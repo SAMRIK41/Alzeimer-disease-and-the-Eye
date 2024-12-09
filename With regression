@@ -40,3 +40,17 @@ print(f"R-squared Score: {r2:.2f}")
 print("\nModel Coefficients:")
 print(f"Intercept: {model.intercept_}")
 print(f"Coefficients: {model.coef_}")
+
+
+import matplotlib.pyplot as plt
+
+# Step 9: Plot Actual vs Predicted values
+plt.figure(figsize=(8, 6))
+plt.scatter(y_test, y_pred, color='blue', label='Predicted vs Actual')
+plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], color='red', linestyle='--', label='Ideal Fit Line')
+plt.xlabel('Actual Values')
+plt.ylabel('Predicted Values')
+plt.title('Actual vs Predicted Values')
+plt.legend()
+plt.grid(True)
+plt.show()
