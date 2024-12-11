@@ -25,3 +25,21 @@ data = pd.read_excel(file_path)
 
 # Display the first few rows of the dataframe
 print(data.head())
+
+
+from sklearn.preprocessing import LabelEncoder
+
+l_Outlook=LabelEncoder()
+l_Outlook=LabelEncoder()
+l_Outlook=LabelEncoder()
+l_Outlook=LabelEncoder()
+l_Outlook=LabelEncoder()
+
+
+data['Age_n']=l_Outlook.fit_transform(data['Age'])
+data['Gender_n']=l_Outlook.fit_transform(data['Gender'])
+data['Retinal Nerve Fiber Layer (RNFL) Thickness (Âµm)_n']=l_Outlook.fit_transform(data['Retinal Nerve Fiber Layer (RNFL) Thickness (Âµm)'])
+data['Macular Thickness (Âµm)_n']=l_Outlook.fit_transform(data['Macular Thickness (Âµm)'])
+data['Retinal Amyloid Presence_n']=l_Outlook.fit_transform(data['Retinal Amyloid Presence'])
+
+print(data.head())
