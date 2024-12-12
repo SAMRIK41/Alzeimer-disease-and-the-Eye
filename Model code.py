@@ -43,3 +43,29 @@ data['Macular Thickness (Âµm)_n']=l_Outlook.fit_transform(data['Macular Thickn
 data['Retinal Amyloid Presence_n']=l_Outlook.fit_transform(data['Retinal Amyloid Presence'])
 
 print(data.head())
+
+
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+
+# Variables (use your encoded data)
+X = data[['Age_n', 'Gender_n',
+          'Retinal Nerve Fiber Layer (RNFL) Thickness (Âµm)_n',
+          'Macular Thickness (Âµm)_n']]  # Features
+y = data['Retinal Amyloid Presence_n']  # Target
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Initialize and train the logistic regression model
+model = LogisticRegression()
+model.fit(X_train, y_train)
+
+# Predict on the test data
+y_pred = model.predict(X_test)
+
+# Evaluate the model
+print("Accuracy:", accuracy_score(y_test, y_pred))
+print("\nClassification Report:\n", classification_report(y_test, y_pred))
+print("\nConfusion Matrix:\n", confusion_matrix(y_test, y_pred))
