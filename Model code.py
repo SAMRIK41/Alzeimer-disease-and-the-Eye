@@ -69,3 +69,38 @@ y_pred = model.predict(X_test)
 print("Accuracy:", accuracy_score(y_test, y_pred))
 print("\nClassification Report:\n", classification_report(y_test, y_pred))
 print("\nConfusion Matrix:\n", confusion_matrix(y_test, y_pred))
+
+
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Assuming the Logistic Regression model has been trained and predictions made
+# Predict probabilities and classify based on threshold
+y_prob = model.predict_proba(X)[:, 1]  # Probability for class '1' (Present)
+y_pred = model.predict(X)  # Predicted class labels
+
+# Add predicted values and probabilities to the dataset for plotting
+data['Predicted Presence'] = y_pred
+data['Prediction Probability'] = y_prob
+
+# Create scatter plot
+plt.figure(figsize=(10, 6))
+scatter = sns.scatterplot(
+    x=data['Retinal Nerve Fiber Layer (RNFL) Thickness (Âµm)_n'],
+    y=data['Macular Thickness (Âµm)_n'],
+    hue=data['Predicted Presence'],
+    size=data['Prediction Probability'],
+    sizes=(20, 200),
+    palette={1: 'blue', 0: 'orange'},
+    style=data['Predicted Presence'],
+    markers={1: 'o', 0: 'X'}
+)
+
+# Customize the plot
+plt.title("Logistic Regression Predictions: RNFL vs Macular Thickness", fontsize=16)
+plt.xlabel("Encoded RNFL Thickness", fontsize=12)
+plt.ylabel("Encoded Macular Thickness", fontsize=12)
+plt.legend(title="Predicted Amyloid Presence", labels=["Absent", "Present"], fontsize=10)
+# plt.grid(True)
+plt.show()
