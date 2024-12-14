@@ -102,5 +102,6 @@ plt.title("Logistic Regression Predictions: RNFL vs Macular Thickness", fontsize
 plt.xlabel("Encoded RNFL Thickness", fontsize=12)
 plt.ylabel("Encoded Macular Thickness", fontsize=12)
 plt.legend(title="Predicted Amyloid Presence", labels=["Absent", "Present"], fontsize=10)
+
 # plt.grid(True)
 plt.show()
